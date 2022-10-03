@@ -9,6 +9,15 @@ interface ProductDao {
     @Query("select * from product_table order by rating desc")
     suspend fun getAllProducts(): List<ProductEntity>
 
+    @Query("select * from product_table order by price desc")
+    suspend fun getOrderByPrice(): List<ProductEntity>
+
+    @Query("select * from product_table order by rating desc")
+    suspend fun getOrderByRating(): List<ProductEntity>
+
+    @Query("select * from product_table order by category desc")
+    suspend fun getOrderByCategory(): List<ProductEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(productEntity: ProductEntity)
 
@@ -20,4 +29,8 @@ interface ProductDao {
 
     @Query("select * from product_table where id = :id ")
     suspend fun getProductById(id:Int):ProductEntity
+
+    @Query("select * from product_table where title like '%'|| :query ")
+    suspend fun getProductById(query:String):List<ProductEntity>
+
 }

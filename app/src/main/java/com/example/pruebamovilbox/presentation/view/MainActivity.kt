@@ -4,35 +4,34 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pruebamovilbox.R
 import com.example.pruebamovilbox.databinding.ActivityMainBinding
+import com.example.pruebamovilbox.domain.model.ProductDomain
 import com.example.pruebamovilbox.presentation.adapters.ProductAdapter
 import com.example.pruebamovilbox.presentation.view.utils.OnClickListener
 import com.example.pruebamovilbox.presentation.viewModel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(),OnClickListener {
+class MainActivity : AppCompatActivity(), OnClickListener, SearchView.OnQueryTextListener {
     private lateinit var binding : ActivityMainBinding
     private lateinit var mAdapter: ProductAdapter
+    private val viewModel : MainActivityViewModel by viewModels()
+    private lateinit var productsList: List<ProductDomain>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val viewModel : MainActivityViewModel by viewModels()
 
         supportActionBar?.title = ""
 
-
         viewModel.getProduct()
-        viewModel.products.observe(this,{
-            val products = it
+        viewModel.products.observe(this,{products->
             mAdapter = ProductAdapter(products,this)
             setUpRecyclerview()
         })
@@ -61,24 +60,47 @@ class MainActivity : AppCompatActivity(),OnClickListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+
             R.id.order_by_price -> {
+                viewModel.getOrderByPrice()
+                productObserver()
+
                 true
             }
             R.id.order_by_category ->{
-                true
-            }
-            R.id.order_by_discount->{
-                true
-            }
-            R.id.order_by_rating->{
-                true
-            }
-            R.id.order_by_stock->{
+                viewModel.getOrderByCategory()
+                productObserver()
                 true
             }
 
+            R.id.order_by_rating->{
+                viewModel.getOrderByRating()
+                productObserver()
+
+                true
+            }
+
+
             else -> super.onOptionsItemSelected(item)
         }
+
+
+    }
+    private fun productObserver(){
+        viewModel.products.observe(this,{
+            val products = it
+            mAdapter = ProductAdapter(products,this)
+            setUpRecyclerview()
+
+        })
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        TODO("Not yet implemented")
     }
 
 }

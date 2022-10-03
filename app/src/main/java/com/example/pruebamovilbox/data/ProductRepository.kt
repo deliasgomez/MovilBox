@@ -39,5 +39,21 @@ class ProductRepository @Inject constructor(
         return response.toDomain()
     }
 
+    suspend fun getOrderByPrice():List<ProductDomain>{
+        val response = productDao.getOrderByPrice()
+        return response.map { it.toDomain() }
+
+    }
+    suspend fun getOrderByCategory():List<ProductDomain>{
+        val response = productDao.getOrderByCategory()
+        return response.map { it.toDomain() }
+
+    }
+    suspend fun getOrderByRating():List<ProductDomain>{
+        val response = productDao.getOrderByRating()
+        return response.map { it.toDomain() }
+
+    }
+
 
 }

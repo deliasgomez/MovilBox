@@ -3,7 +3,7 @@ package com.example.pruebamovilbox.presentation.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pruebamovilbox.domain.GetProductByIdUseCase
+import com.example.pruebamovilbox.domain.useCases.GetProductByIdUseCase
 import com.example.pruebamovilbox.domain.model.ProductDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -11,18 +11,13 @@
     <item android:id="@+id/order_by_price"
         android:title="@string/price"
         />
-    <item android:id="@+id/order_by_discount"
-        android:title="@string/discount"
-        />
+
+
     <item android:id="@+id/order_by_category"
         android:title="@string/category"
         />
     <item android:id="@+id/order_by_rating"
         android:title="@string/rating"
         />
-    <item android:id="@+id/order_by_stock"
-        android:title="@string/stock"
-        />
-
 
 </menu>

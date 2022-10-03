@@ -1,4 +1,4 @@
-package com.example.pruebamovilbox.domain
+package com.example.pruebamovilbox.domain.useCases
 
 import com.example.pruebamovilbox.data.ProductRepository
 import com.example.pruebamovilbox.domain.model.ProductDomain
