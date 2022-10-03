@@ -1,9 +1,6 @@
 package com.example.pruebamovilbox.data.database.daos
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.pruebamovilbox.data.database.entities.ProductEntity
 
 @Dao
@@ -14,4 +11,13 @@ interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(productEntity: ProductEntity)
+
+    @Insert
+    suspend fun insertAll(productList: List<ProductEntity>)
+
+    @Query("delete from product_table")
+    suspend fun deleteAllProducts()
+
+    @Query("select * from product_table where id = :id ")
+    suspend fun getProductById(id:Int):ProductEntity
 }

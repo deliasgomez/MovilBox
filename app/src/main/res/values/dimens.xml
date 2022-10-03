@@ -11,9 +11,12 @@
     <dimen name="size_40">40dp</dimen>
     <dimen name="size_150">150dp</dimen>
     <dimen name="size_230">230dp</dimen>
+    <dimen name="size_400">400dp</dimen>
 
 
     <!--General dimensions texts-->
     <dimen name="size_text_15">15sp</dimen>
+    <dimen name="size_text_20">20sp</dimen>
+    <dimen name="size_text_24">24sp</dimen>
     <dimen name="size_text_36">36sp</dimen>
 </resources>

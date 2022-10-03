@@ -3,6 +3,9 @@ package com.example.pruebamovilbox.presentation.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,10 +27,12 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         setContentView(binding.root)
         val viewModel : MainActivityViewModel by viewModels()
 
+        supportActionBar?.title = ""
+
 
         viewModel.getProduct()
         viewModel.products.observe(this,{
-            val products = it.products
+            val products = it
             mAdapter = ProductAdapter(products,this)
             setUpRecyclerview()
         })
@@ -47,6 +52,33 @@ class MainActivity : AppCompatActivity(),OnClickListener {
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra("ID", productId)
         startActivity(intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_orderer, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.order_by_price -> {
+                true
+            }
+            R.id.order_by_category ->{
+                true
+            }
+            R.id.order_by_discount->{
+                true
+            }
+            R.id.order_by_rating->{
+                true
+            }
+            R.id.order_by_stock->{
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }

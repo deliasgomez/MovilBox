@@ -13,4 +13,11 @@
     <string name="product_details">Detalles del producto</string>
     <string name="description">Descripción</string>
     <string name="product_name">Iphone X</string>
+    <string name="precio">precio</string>
+    <string name="price">precio</string>
+    <string name="discount">descuento</string>
+    <string name="category">categoria</string>
+    <string name="rating">rating</string>
+    <string name="stock">cantidad</string>
+    <string name="search">Buscar</string>
 </resources>

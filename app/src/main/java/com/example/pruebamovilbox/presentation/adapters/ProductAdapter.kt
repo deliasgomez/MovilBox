@@ -10,15 +10,16 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.pruebamovilbox.R
 import com.example.pruebamovilbox.data.model.Product
 import com.example.pruebamovilbox.databinding.ItemProductsBinding
+import com.example.pruebamovilbox.domain.model.ProductDomain
 import com.example.pruebamovilbox.presentation.view.utils.OnClickListener
 
-class ProductAdapter(private var products : List<Product>,
+class ProductAdapter(private var products : List<ProductDomain>,
                      private var listener: OnClickListener
                      ):RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(view: View):RecyclerView.ViewHolder(view){
         val binding = ItemProductsBinding.bind(view)
-        fun setListener(product: Product){
+        fun setListener(product: ProductDomain){
             with(binding.root){
                 setOnClickListener { listener.onClick(product.id) }
 

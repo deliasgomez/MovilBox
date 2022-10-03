@@ -10,4 +10,7 @@ interface ProductApiClient {
     @GET("products")
     suspend fun getAllProducts(): Response<ProductResponse>
 
+
+
+
 }

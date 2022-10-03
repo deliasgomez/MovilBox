@@ -3,6 +3,7 @@ package com.example.pruebamovilbox.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.pruebamovilbox.domain.model.ProductDomain
 import com.google.gson.annotations.SerializedName
 
 
@@ -19,6 +20,17 @@ data class ProductEntity(
     @ColumnInfo(name = "thumbnail") val thumbnail: String,
     @ColumnInfo(name = "title") val title: String
 
+)
 
-
+fun ProductDomain.toDatabase() = ProductEntity(
+    mark,
+    category,
+    description,
+    discountPercentage,
+    id,
+    price,
+    rating,
+    stock,
+    thumbnail,
+    title
 )
