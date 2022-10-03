@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/size_8"
+    android:layout_marginHorizontal="@dimen/size_8"
+    app:cardCornerRadius="@dimen/size_40"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingVertical="@dimen/size_10"
+        android:background="@color/background_card_view"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_image"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_150"
+            android:layout_marginTop="@dimen/size_16"
+            android:layout_marginHorizontal="@dimen/size_16"
+            app:cardCornerRadius="@dimen/size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_photo_product"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/purple_200"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/description_image_product"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/tv_name_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/name_product"
+            android:layout_marginTop="@dimen/size_8"
+            android:padding="@dimen/size_8"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintStart_toStartOf="@id/card_view_image"
+            app:layout_constraintEnd_toEndOf="@id/card_view_image"
+            app:layout_constraintTop_toBottomOf="@id/card_view_image"
+            />
+        <TextView
+            android:id="@+id/tv_mark_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mark_product"
+            android:padding="@dimen/size_8"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintStart_toStartOf="@id/tv_name_product"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_product"
+            app:layout_constraintEnd_toEndOf="@id/tv_name_product"
+            />
+        <TextView
+            android:id="@+id/tv_price_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/price_product"
+            android:textColor="@color/black"
+            android:padding="@dimen/size_8"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintStart_toStartOf="@id/tv_name_product"
+            app:layout_constraintTop_toBottomOf="@id/tv_mark_product"            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <TextView
+            android:id="@+id/tv_product_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rating_product"
+            android:drawablePadding="@dimen/size_4"
+            android:padding="@dimen/size_8"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintEnd_toEndOf="@id/tv_mark_product"
+            app:layout_constraintTop_toBottomOf="@id/tv_mark_product"
+            app:drawableStartCompat="@drawable/ic_star" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

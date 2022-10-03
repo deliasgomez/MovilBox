@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Prueba MovilBox</string>
+    <string name="hint_section_name">Productos</string>
+    <string name="description_image_product">foto del producto</string>
+    <string name="name_product">nombre del producto</string>
+    <string name="mark_product">marca del producto</string>
+    <string name="rating_product">rating</string>
+    <string name="price_product">precio</string>
+    <string name="fail_response">"Ha ocurrido un error revise su conexión a internet e intente nuevamente "</string>
+    <string name="accept">aceptar</string>
+    <string name="product_price">$ %1$d</string>
+    <string name="key_product">key_product</string>
+    <string name="product_details">Detalles del producto</string>
+    <string name="description">Descripción</string>
+    <string name="product_name">Iphone X</string>
 </resources>
