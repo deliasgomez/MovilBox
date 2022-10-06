@@ -4,11 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pruebamovilbox.domain.useCases.GetOrderByCategoryUseCase
-import com.example.pruebamovilbox.domain.useCases.GetOrderByPriceUseCase
-import com.example.pruebamovilbox.domain.useCases.GetProductsUseCase
 import com.example.pruebamovilbox.domain.model.ProductDomain
-import com.example.pruebamovilbox.domain.useCases.GetOrderByRatingUseCase
+import com.example.pruebamovilbox.domain.useCases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +15,8 @@ class MainActivityViewModel @Inject constructor(
     private val getProductsUseCase: GetProductsUseCase,
     private val getOrderByPriceUseCase : GetOrderByPriceUseCase,
     private val getOrderByCategoryUseCase : GetOrderByCategoryUseCase,
-    private val getOrderByRatingUseCase : GetOrderByRatingUseCase
+    private val getOrderByRatingUseCase : GetOrderByRatingUseCase,
+    private val getProductByQueryUseCase: GetProductByQueryUseCase
 ) : ViewModel() {
     private val _products = MutableLiveData<List<ProductDomain>>()
     val products: LiveData<List<ProductDomain>> get() = _products
@@ -51,6 +49,13 @@ class MainActivityViewModel @Inject constructor(
     fun getOrderByRating(){
         viewModelScope.launch {
             val result = getOrderByRatingUseCase()
+            _products.postValue(result)
+        }
+    }
+
+    fun getProductByQuery(query:String){
+        viewModelScope.launch {
+            val result = getProductByQueryUseCase(query)
             _products.postValue(result)
         }
     }

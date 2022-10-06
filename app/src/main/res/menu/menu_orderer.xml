@@ -6,12 +6,11 @@
         android:icon="@drawable/ic_search"
         android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|withText"/>
+        app:showAsAction="always|collapseActionView"/>
 
     <item android:id="@+id/order_by_price"
         android:title="@string/price"
         />
-
 
     <item android:id="@+id/order_by_category"
         android:title="@string/category"

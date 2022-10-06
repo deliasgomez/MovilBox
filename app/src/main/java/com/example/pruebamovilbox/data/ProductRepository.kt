@@ -55,5 +55,11 @@ class ProductRepository @Inject constructor(
 
     }
 
+    suspend fun getProductByQuery(query : String):List<ProductDomain>{
+        val response = productDao.getProductByQuery(query)
+        return response.map { it.toDomain() }
+
+    }
+
 
 }

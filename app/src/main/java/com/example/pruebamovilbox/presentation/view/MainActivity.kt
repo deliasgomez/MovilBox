@@ -10,18 +10,17 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pruebamovilbox.R
 import com.example.pruebamovilbox.databinding.ActivityMainBinding
-import com.example.pruebamovilbox.domain.model.ProductDomain
 import com.example.pruebamovilbox.presentation.adapters.ProductAdapter
 import com.example.pruebamovilbox.presentation.view.utils.OnClickListener
 import com.example.pruebamovilbox.presentation.viewModel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), OnClickListener, SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity(), OnClickListener , SearchView.OnQueryTextListener {
     private lateinit var binding : ActivityMainBinding
     private lateinit var mAdapter: ProductAdapter
     private val viewModel : MainActivityViewModel by viewModels()
-    private lateinit var productsList: List<ProductDomain>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +28,14 @@ class MainActivity : AppCompatActivity(), OnClickListener, SearchView.OnQueryTex
         setContentView(binding.root)
 
         supportActionBar?.title = ""
-
         viewModel.getProduct()
-        viewModel.products.observe(this,{products->
-            mAdapter = ProductAdapter(products,this)
-            setUpRecyclerview()
-        })
+        productObserver()
 
     }
+
+
+
+    
 
     private fun setUpRecyclerview() {
 
@@ -55,27 +54,50 @@ class MainActivity : AppCompatActivity(), OnClickListener, SearchView.OnQueryTex
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_orderer, menu)
+        val item = menu.findItem(R.id.search)
+        val searchView = item?.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
+
+
+        return true
+
+    }
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null ){
+            searchDatabase(query)
+        }
         return true
     }
+
+    override fun onQueryTextChange(query: String): Boolean {
+        if (query != null){
+            searchDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchDatabase(query : String){
+        val searchQuery = "%$query%"
+        viewModel.getProductByQuery(searchQuery)
+
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
 
             R.id.order_by_price -> {
                 viewModel.getOrderByPrice()
-                productObserver()
-
                 true
             }
             R.id.order_by_category ->{
                 viewModel.getOrderByCategory()
-                productObserver()
                 true
             }
 
             R.id.order_by_rating->{
                 viewModel.getOrderByRating()
-                productObserver()
 
                 true
             }
@@ -95,12 +117,6 @@ class MainActivity : AppCompatActivity(), OnClickListener, SearchView.OnQueryTex
         })
     }
 
-    override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
-    }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
-    }
 
 }

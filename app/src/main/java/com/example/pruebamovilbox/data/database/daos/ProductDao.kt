@@ -3,6 +3,7 @@ package com.example.pruebamovilbox.data.database.daos
 import androidx.room.*
 import com.example.pruebamovilbox.data.database.entities.ProductEntity
 
+
 @Dao
 interface ProductDao {
 
@@ -30,7 +31,7 @@ interface ProductDao {
     @Query("select * from product_table where id = :id ")
     suspend fun getProductById(id:Int):ProductEntity
 
-    @Query("select * from product_table where title like '%'|| :query ")
-    suspend fun getProductById(query:String):List<ProductEntity>
+    @Query("select * from product_table where title like  :query  order by rating desc ")
+    suspend fun getProductByQuery(query:String): List<ProductEntity>
 
 }
