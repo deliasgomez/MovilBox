@@ -20,4 +20,5 @@
     <string name="rating">rating</string>
     <string name="stock">cantidad</string>
     <string name="search">Buscar</string>
+    <string name="response_empty">Ningun resultado coincide con tu busqueda!</string>
 </resources>

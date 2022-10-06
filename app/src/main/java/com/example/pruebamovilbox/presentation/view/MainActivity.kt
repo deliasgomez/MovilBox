@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.pruebamovilbox.R
 import com.example.pruebamovilbox.databinding.ActivityMainBinding
@@ -79,7 +81,7 @@ class MainActivity : AppCompatActivity(), OnClickListener , SearchView.OnQueryTe
 
     private fun searchDatabase(query : String){
         val searchQuery = "%$query%"
-        viewModel.getProductByQuery(searchQuery)
+        val response = viewModel.getProductByQuery(searchQuery)
 
     }
 
@@ -111,8 +113,17 @@ class MainActivity : AppCompatActivity(), OnClickListener , SearchView.OnQueryTe
     private fun productObserver(){
         viewModel.products.observe(this,{
             val products = it
-            mAdapter = ProductAdapter(products,this)
-            setUpRecyclerview()
+            if (it.isEmpty()){
+                binding.noResults.isVisible = true
+                binding.noResults.text = getString(R.string.response_empty)
+                mAdapter = ProductAdapter(products,this)
+                setUpRecyclerview()
+            }else{
+                binding.noResults.isVisible = false
+                mAdapter = ProductAdapter(products,this)
+                setUpRecyclerview()
+            }
+
 
         })
     }

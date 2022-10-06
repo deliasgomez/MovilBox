@@ -31,7 +31,7 @@ interface ProductDao {
     @Query("select * from product_table where id = :id ")
     suspend fun getProductById(id:Int):ProductEntity
 
-    @Query("select * from product_table where title like  :query  order by rating desc ")
+    @Query("select * from product_table where title like  :query  ")
     suspend fun getProductByQuery(query:String): List<ProductEntity>
 
 }
